@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071a33">
+
+  <title>NOVELECT POWER | Electrical Solutions</title>
+  <meta name="description"
+    content="Explore electrical products from NOVELECT POWER. Contact us for product availability, quotations and enquiries.">
+
+  <style>
+    :root {
+      --navy: #071a33;
+      --blue: #1769ff;
+      --cyan: #55d6ff;
+      --light: #f4f7fc;
+      --white: #ffffff;
+      --text: #182840;
+      --muted: #68778d;
+      --border: #e2e9f3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 18px 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .hero {
+      color: white;
+      padding: 95px 0;
+      background:
+        radial-gradient(ellipse at 85% 20%, #1769ff55, transparent 38%),
+        linear-gradient(120deg, #071a33, #102c54 70%, #071a33);
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.6rem);
+      line-height: 1.08;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      color: var(--cyan);
+    }
+
+    .hero p {
+      max-width: 580px;
+      color: #d4dfef;
+      font-size: 1.08rem;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--blue);
+      color: white;
+    }
+
+    .button-primary:hover {
+      background: #0755df;
+    }
+
+    .button-outline {
+      border: 1px solid #a6c9ff;
+      color: white;
+      margin-left: 8px;
+    }
+
+    section {
+      padding: 75px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 40px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .products {
+      background: var(--light);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: white;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px #071a3310;
+    }
+
+    .product-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: #e9f1ff;
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+
+    .product-card h3 {
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .product-card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .about-grid h2 {
+      font-size: 2.2rem;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .about-grid p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .promise {
+      background: var(--navy);
+      color: white;
+      border-radius: 18px;
+      padding: 32px;
+    }
+
+    .promise h3 {
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+
+    .promise ul {
+      padding-left: 20px;
+    }
+
+    .promise li {
+      margin: 10px 0;
+    }
+
+    .contact {
+      background: var(--light);
+    }
+
+    .contact-box {
+      max-width: 720px;
+      margin: auto;
+      text-align: center;
+      padding: 42px 25px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .contact-box h2 {
+      color: var(--navy);
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .email {
+      display: block;
+      margin-top: 20px;
+      color: var(--blue);
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      background: #041225;
+      color: #c3cee0;
+      padding: 25px 0;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding: 70px 0;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        margin: 5px 0;
+      }
+
+      .nav-links {
+        font-size: 0.84rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <nav aria-label="Main navigation">
+        <a class="brand" href="#home">NOVELECT <span>POWER</span></a>
+
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#products">Products</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="eyebrow">Powering everyday connections</div>
+
+        <h1>Electrical solutions.<br>
+          <span>Made simple.</span>
+        </h1>
+
+        <p>
+          Welcome to NOVELECT POWER. Explore electrical product
+          categories and contact us for availability, quotations
+          and business enquiries.
+        </p>
+
+        <a class="button button-primary" href="#products">
+          Explore Products
+        </a>
+
+        <a class="button button-outline" href="#contact">
+          Contact Us
+        </a>
+      </div>
+    </section>
+
+    <section class="products" id="products">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Our Product Categories</h2>
+          <p>
+            Find the electrical essentials you need.
+            Contact us to confirm stock, specifications and pricing.
+          </p>
+        </div>
+
+        <div class="product-grid">
+
+          <article class="product-card">
+            <div class="product-icon">〰️</div>
+            <h3>Wires & Cables</h3>
+            <p>Explore available wiring and cable products for suitable electrical applications.</p>
+          </article>
+
+          <article class="product-card">
+            <div class="product-icon">💡</div>
+            <h3>LED Lighting</h3>
+            <p>Ask us about available LED bulbs, lighting products and accessories.</p>
+          </article>
+
+          <article class="product-card">
+            <div class="product-icon">🔌</div>
+            <h3>Switches & Sockets</h3>
+            <p>Explore switchboards, sockets, plugs and related electrical fittings.</p>
+          </article>
+
+          <article class="product-card">
+            <div class="product-icon">⚡</div>
+            <h3>MCBs & Protection</h3>
+            <p>Ask about available circuit protection products and their specifications.</p>
+          </article>
+
+          <article class="product-card">
+            <div class="product-icon">🧰</div>
+            <h3>Electrical Accessories</h3>
+            <p>Find out about holders, insulation tape, connectors and other stocked essentials.</p>
+          </article>
+
+          <article class="product-card">
+            <div class="product-icon">📦</div>
+            <h3>Bulk Enquiries</h3>
+            <p>Need multiple items? Contact us with your product list for a quotation.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="eyebrow">About our business</div>
+
+          <h2>Building a brighter, more connected future.</h2>
+
+          <p>
+            NOVELECT POWER is an electrical products business
+            focused on helping customers enquire about the products
+            they need.
+          </p>
+
+          <p>
+            Our goal is to make product discovery and communication
+            simple, with clear information and responsive service.
+          </p>
+
+          <p>
+            Contact us to confirm product availability, specifications,
+            prices and fulfilment options.
+          </p>
+        </div>
+
+        <div class="promise">
+          <h3>Our approach</h3>
+          <ul>
+            <li>Clear product information</li>
+            <li>Transparent quotations</li>
+            <li>Responsive customer communication</li>
+            <li>Product specifications confirmed before ordering</li>
+            <li>Suitable options based on customer requirements</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div class="eyebrow">Get in touch</div>
+
+          <h2>Let's discuss what you need.</h2>
+
+          <p>
+            Contact NOVELECT POWER for product enquiries,
+            availability checks and quotations.
+          </p>
+
+          <a class="button button-primary"
+             href="mailto:novelectpower@gmail.com?subject=Product%20Enquiry%20-%20NOVELECT%20POWER">
+            Email Our Business
+          </a>
+
+          <a class="email" href="mailto:novelectpower@gmail.com">
+            novelectpower@gmail.com
+          </a>
+
+          <!-- Add your verified business phone and shop address here. -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>NOVELECT POWER</strong>
+      <p>Electrical products and customer enquiries.</p>
+      <p>© <span id="year"></span> NOVELECT POWER. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
