@@ -1,608 +1,292 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#071a33">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0b0d">
+<title>NOVELECT POWER | Electrical Solutions</title>
+<meta name="description" content="Explore electrical products from NOVELECT POWER. Contact us for product availability, quotations and enquiries.">
+<style>
+:root{
+  --black:#0b0b0d; --gold:#ffd21f; --goldd:#b88f00; --light:#f4f5f7; --white:#fff;
+  --text:#1b1f27; --muted:#6a7280; --border:#e3e6ec; --red:#d71920; --wa:#128c48;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--white);line-height:1.55}
+a{text-decoration:none;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.container{width:min(1200px,92%);margin:auto}
 
-  <title>NOVELECT POWER | Electrical Solutions</title>
-  <meta name="description"
-    content="Explore electrical products from NOVELECT POWER. Contact us for product availability, quotations and enquiries.">
+/* header */
+header{position:sticky;top:0;z-index:50;background:var(--black);color:#fff;padding:14px 0}
+nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-size:1.3rem;font-weight:800;letter-spacing:1px}
+.brand span{color:var(--gold)}
+.nav-links{display:flex;gap:22px;font-size:.93rem}
+.nav-links a:hover{color:var(--gold)}
+@media(max-width:560px){.nav-links{gap:14px;font-size:.84rem}.brand{font-size:1.05rem}}
 
-  <style>
-    :root {
-      --navy: #071a33;
-      --blue: #1769ff;
-      --cyan: #55d6ff;
-      --light: #f4f7fc;
-      --white: #ffffff;
-      --text: #182840;
-      --muted: #68778d;
-      --border: #e2e9f3;
-    }
+/* buttons */
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border-radius:50px;font-weight:700;border:1px solid transparent;cursor:pointer;font:700 1rem Arial,sans-serif}
+.button-primary{background:var(--gold);color:#111;border-color:var(--gold)}
+.button-primary:hover{background:#ffe055}
+.button-outline{background:var(--wa);color:#fff;border-color:var(--wa)}
+.button-outline:hover{background:#0f7a3f}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      width: min(1120px, 90%);
-      margin: auto;
-    }
-
-    header {
-      background: var(--navy);
-      color: var(--white);
-      padding: 18px 0;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .brand span {
-      color: var(--cyan);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      flex-wrap: wrap;
-      font-size: 0.92rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--cyan);
-    }
-
-    .hero {
-      color: white;
-      padding: 95px 0;
-      background:
-        radial-gradient(ellipse at 85% 20%, #1769ff55, transparent 38%),
-        linear-gradient(120deg, #071a33, #102c54 70%, #071a33);
-    }
-
-    .hero-content {
-      max-width: 720px;
-    }
-
-    .eyebrow {
-      color: var(--cyan);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 4.6rem);
-      line-height: 1.08;
-      margin-bottom: 22px;
-    }
-
-    h1 span {
-      color: var(--cyan);
-    }
-
-    .hero p {
-      max-width: 580px;
-      color: #d4dfef;
-      font-size: 1.08rem;
-      margin-bottom: 30px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 13px 22px;
-      border-radius: 8px;
-      font-weight: 700;
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
-    .button-primary {
-      background: var(--blue);
-      color: white;
-    }
-
-    .button-primary:hover {
-      background: #0755df;
-    }
-
-    .button-outline {
-      border: 1px solid #a6c9ff;
-      color: white;
-      margin-left: 8px;
-    }
-
-    section {
-      padding: 75px 0;
-    }
-
-    .section-heading {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 40px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      color: var(--navy);
-      margin-bottom: 10px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-    }
-
-    .products {
-      background: var(--light);
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      background: white;
-      padding: 26px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px #071a3310;
-    }
-
-    .product-icon {
-      width: 54px;
-      height: 54px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: #e9f1ff;
-      font-size: 1.7rem;
-      margin-bottom: 18px;
-    }
-
-    .product-card h3 {
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    .product-card p {
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 50px;
-    }
-
-    .about-grid h2 {
-      font-size: 2.2rem;
-      color: var(--navy);
-      line-height: 1.2;
-      margin-bottom: 18px;
-    }
-
-    .about-grid p {
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .promise {
-      background: var(--navy);
-      color: white;
-      border-radius: 18px;
-      padding: 32px;
-    }
-
-    .promise h3 {
-      color: var(--cyan);
-      margin-bottom: 16px;
-    }
-
-    .promise ul {
-      padding-left: 20px;
-    }
-
-    .promise li {
-      margin: 10px 0;
-    }
-
-    .contact {
-      background: var(--light);
-    }
-
-    .contact-box {
-      max-width: 720px;
-      margin: auto;
-      text-align: center;
-      padding: 42px 25px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-    }
-
-    .contact-box h2 {
-      color: var(--navy);
-      font-size: 2rem;
-      margin-bottom: 12px;
-    }
-
-    .contact-box p {
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-
-    .email {
-      display: block;
-      margin-top: 20px;
-      color: var(--blue);
-      overflow-wrap: anywhere;
-    }
-
-    footer {
-      background: #041225;
-      color: #c3cee0;
-      padding: 25px 0;
-      text-align: center;
-      font-size: 0.88rem;
-    }
-
-    footer strong {
-      color: white;
-    }
-
-    @media (max-width: 760px) {
-      .hero {
-        padding: 70px 0;
-      }
-
-      .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-
-      .nav-links {
-        gap: 14px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .button {
-        margin: 5px 0;
-      }
-
-      .nav-links {
-        font-size: 0.84rem;
-      }
-    }
-  
-/* NOVELECT POWER — Full-screen homepage */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 120px 20px 55px;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.10) 30%,
-      rgba(0, 0, 0, 0.30) 60%,
-      rgba(0, 0, 0, 0.75) 100%
-    ),
-    url("shopimg1.png") center center / cover no-repeat;
-  color: #fff;
-  overflow: hidden;
+/* hero: full-screen shop image */
+.hero{position:relative;min-height:calc(100vh - 56px);min-height:calc(100svh - 56px);width:100%;
+  background:linear-gradient(to bottom,rgba(0,0,0,.05) 35%,rgba(0,0,0,.35) 65%,rgba(0,0,0,.8) 100%),
+  url("shopimg1.png") center center/cover no-repeat #0b0b0d;color:#fff}
+.hero-bottom-content{position:absolute;left:0;right:0;bottom:35px;text-align:center;padding:0 20px}
+.welcome-line{margin-bottom:20px;font-size:clamp(18px,2.5vw,30px);font-weight:700;letter-spacing:3px;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.hero-buttons{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+@media(max-width:600px){
+  .hero{background-position:center}
+  .welcome-line{letter-spacing:1.5px;font-size:18px}
+  .hero-buttons .button{width:100%;max-width:290px}
 }
 
-.hero .container,
-.hero-content {
-  width: 100%;
-}
+/* products */
+.products{background:var(--light);padding:50px 0 70px}
+.products h2{font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--black)}
+.products .sub{color:var(--muted);margin:6px 0 22px}
+.toolbar{display:grid;gap:14px;margin-bottom:24px}
+.search{position:relative}
+.search input{width:100%;height:50px;padding:0 20px;font:inherit;border:1px solid var(--border);border-radius:50px;background:#fff}
+.chips{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.chip{flex:none;padding:9px 18px;border-radius:50px;border:1px solid var(--border);background:#fff;font:600 .92rem Arial,sans-serif;cursor:pointer;color:var(--text)}
+.chip:hover{border-color:var(--black)}
+.chip[aria-pressed="true"]{background:var(--black);color:var(--gold);border-color:var(--black)}
+.count{color:var(--muted);font-size:.9rem;margin-bottom:14px}
 
-.hero-bottom-content {
-    position: absolute;
-    z-index: 2;
-    left: 0;
-    right: 0;
-    bottom: 35px;
-    width: 100%;
-    text-align: center;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+@media(max-width:1060px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:780px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+@media(max-width:440px){.grid{grid-template-columns:1fr}}
 
-.welcome-line {
-  margin: 0 0 22px;
-  color: #fff;
-  font-size: clamp(18px, 2.5vw, 30px);
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
-  text-align: center;
-  width: 100%;
-}
+.card{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column}
+.card .pic{aspect-ratio:4/3;background:#fff;display:grid;place-items:center;padding:14px;border-bottom:1px solid var(--border)}
+.card .pic img{max-width:100%;max-height:100%;object-fit:contain}
+.card .pic .ph{font-size:3.4rem}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{font-size:1.02rem;color:var(--black);line-height:1.3}
+.card .spec{font-size:.85rem;color:var(--muted)}
+.price{font-size:1.15rem;font-weight:700;color:var(--red);margin-top:6px}
+.price small{font-size:.8rem;font-weight:400;color:var(--muted)}
+.price.ask{font-size:.95rem;color:var(--goldd)}
+.card ul{list-style:none;font-size:.86rem;color:var(--text);margin-top:4px}
+.card li{padding-left:16px;position:relative;margin:3px 0}
+.card li::before{content:"–";position:absolute;left:0;color:var(--red);font-weight:700}
+.card .enq{margin-top:auto;padding-top:12px}
+.card .enq a{display:block;text-align:center;padding:10px;border-radius:50px;font-weight:700;font-size:.9rem;border:1.5px solid var(--black)}
+.card .enq a:hover{background:var(--black);color:var(--gold)}
+.empty{padding:40px 10px;text-align:center;color:var(--muted)}
+.empty a{color:var(--wa);font-weight:700}
 
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.hero-buttons .button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 48px;
-  padding: 0 25px;
-  border-radius: 50px;
-  font-weight: 700;
-  text-decoration: none;
-  box-sizing: border-box;
-}
-
-.hero-buttons .button-primary {
-  background: #ffd21f;
-  color: #111;
-  border: 1px solid #ffd21f;
-}
-
-.hero-buttons .button-outline {
-  background: #128c48;
-  color: #fff;
-  border: 1px solid #128c48;
-}
-
-@media (max-width: 600px) {
-  .hero {
-    padding: 80px 16px 25px;
-    background-position: center center;
-  }
-
-  .welcome-line {
-    letter-spacing: 1.5px;
-    font-size: 18px;
-  }
-
-  .hero-buttons {
-    gap: 10px;
-  }
-
-  .hero-buttons .button {
-    width: 100%;
-    max-width: 290px;
-  }
-}
+/* about / contact */
+section.plain{padding:70px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.eyebrow{color:var(--goldd);font-size:.8rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
+.about-grid h2{font-size:2.1rem;line-height:1.2;color:var(--black);margin-bottom:16px}
+.about-grid p{color:var(--muted);margin-bottom:14px}
+.promise{background:var(--black);color:#fff;border-radius:16px;padding:30px}
+.promise h3{color:var(--gold);margin-bottom:14px}
+.promise ul{padding-left:20px}.promise li{margin:9px 0}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:28px}}
+.contact{background:var(--light)}
+.contact-box{max-width:720px;margin:auto;text-align:center;padding:42px 24px;background:#fff;border:1px solid var(--border);border-radius:18px}
+.contact-box h2{font-size:2rem;color:var(--black);margin-bottom:12px}
+.contact-box p{color:var(--muted);margin-bottom:24px}
+.contact-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.email{display:block;margin-top:20px;color:#1769ff;overflow-wrap:anywhere}
+footer{background:var(--black);color:#c3c8d2;padding:26px 0;text-align:center;font-size:.88rem}
+footer strong{color:#fff}
+.wa-float{position:fixed;right:16px;bottom:16px;background:#25d366;color:#04230f;font-weight:700;padding:12px 18px;border-radius:50px;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:60}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
-
 <body>
 
-  <header>
-    <div class="container">
-      <nav aria-label="Main navigation">
-        <a class="brand" href="#home">NOVELECT <span>POWER</span></a>
-
-        <div class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#products">Products</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    
-<section class="hero" id="home">
-  <div class="hero-bottom-content">
-    <p class="welcome-line">WELCOME TO NOVELECT POWER</p>
-
-    <div class="hero-buttons">
-      <a href="#products" class="button button-primary">
-        Explore Products →
-      </a>
-
-      <a href="https://wa.me/919217827363"
-         class="button button-outline"
-         target="_blank"
-         rel="noopener noreferrer">
-        Contact on WhatsApp
-      </a>
-    </div>
+<header>
+  <div class="container">
+    <nav aria-label="Main navigation">
+      <a class="brand" href="#home">NOVELECT <span>POWER</span></a>
+      <div class="nav-links">
+        <a href="#home">Home</a><a href="#products">Products</a><a href="#about">About</a><a href="#contact">Contact</a>
+      </div>
+    </nav>
   </div>
-</section>
+</header>
 
-
-    <section class="products" id="products">
-      <div class="container">
-        <div class="section-heading">
-          <h2>Our Product Categories</h2>
-          <p>
-            Find the electrical essentials you need.
-            Contact us to confirm stock, specifications and pricing.
-          </p>
-        </div>
-
-        <div class="product-grid">
-
-          <article class="product-card">
-            <div class="product-icon">〰️</div>
-            <h3>Wires & Cables</h3>
-            <p>Explore available wiring and cable products for suitable electrical applications.</p>
-          </article>
-
-          <article class="product-card">
-            <div class="product-icon">💡</div>
-            <h3>LED Lighting</h3>
-            <p>Ask us about available LED bulbs, lighting products and accessories.</p>
-          </article>
-
-          <article class="product-card">
-            <div class="product-icon">🔌</div>
-            <h3>Switches & Sockets</h3>
-            <p>Explore switchboards, sockets, plugs and related electrical fittings.</p>
-          </article>
-
-          <article class="product-card">
-            <div class="product-icon">⚡</div>
-            <h3>MCBs & Protection</h3>
-            <p>Ask about available circuit protection products and their specifications.</p>
-          </article>
-
-          <article class="product-card">
-            <div class="product-icon">🧰</div>
-            <h3>Electrical Accessories</h3>
-            <p>Find out about holders, insulation tape, connectors and other stocked essentials.</p>
-          </article>
-
-          <article class="product-card">
-            <div class="product-icon">📦</div>
-            <h3>Bulk Enquiries</h3>
-            <p>Need multiple items? Contact us with your product list for a quotation.</p>
-          </article>
-
-        </div>
+<main>
+  <section class="hero" id="home" aria-label="NOVELECT POWER shop">
+    <div class="hero-bottom-content">
+      <p class="welcome-line">WELCOME TO NOVELECT POWER</p>
+      <div class="hero-buttons">
+        <a href="#products" class="button button-primary">Explore Products →</a>
+        <a href="https://wa.me/919217827363" class="button button-outline" target="_blank" rel="noopener noreferrer">Contact on WhatsApp</a>
       </div>
-    </section>
-
-    <section id="about">
-      <div class="container about-grid">
-        <div>
-          <div class="eyebrow">About our business</div>
-
-          <h2>Building a brighter, more connected future.</h2>
-
-          <p>
-            NOVELECT POWER is an electrical products business
-            focused on helping customers enquire about the products
-            they need.
-          </p>
-
-          <p>
-            Our goal is to make product discovery and communication
-            simple, with clear information and responsive service.
-          </p>
-
-          <p>
-            Contact us to confirm product availability, specifications,
-            prices and fulfilment options.
-          </p>
-        </div>
-
-        <div class="promise">
-          <h3>Our approach</h3>
-          <ul>
-            <li>Clear product information</li>
-            <li>Transparent quotations</li>
-            <li>Responsive customer communication</li>
-            <li>Product specifications confirmed before ordering</li>
-            <li>Suitable options based on customer requirements</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="container">
-        <div class="contact-box">
-          <div class="eyebrow">Get in touch</div>
-
-          <h2>Let's discuss what you need.</h2>
-
-          <p>
-            Contact NOVELECT POWER for product enquiries,
-            availability checks and quotations.
-          </p>
-
-          <a class="button button-primary"
-             href="mailto:novelectpower@gmail.com?subject=Product%20Enquiry%20-%20NOVELECT%20POWER">
-            Email Our Business
-          </a>
-
-          <a class="email" href="mailto:novelectpower@gmail.com">
-            novelectpower@gmail.com
-          </a>
-
-          <!-- Add your verified business phone and shop address here. -->
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <strong>NOVELECT POWER</strong>
-      <p>Electrical products and customer enquiries.</p>
-      <p>© <span id="year"></span> NOVELECT POWER. All rights reserved.</p>
     </div>
-  </footer>
+  </section>
 
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
+  <section class="products" id="products">
+    <div class="container">
+      <h2>Our Products</h2>
+      <p class="sub">Tap “Enquire” on any product to confirm stock, specifications and price on WhatsApp.</p>
 
+      <div class="toolbar">
+        <div class="search"><input id="q" type="search" placeholder="Search products, e.g. wire, LED, MCB" aria-label="Search products"></div>
+        <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+      </div>
+      <p class="count" id="count" aria-live="polite"></p>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="plain" id="about">
+    <div class="container about-grid">
+      <div>
+        <div class="eyebrow">About our business</div>
+        <h2>Building a brighter, more connected future.</h2>
+        <p>NOVELECT POWER is an electrical products business focused on helping customers enquire about the products they need.</p>
+        <p>Our goal is to make product discovery and communication simple, with clear information and responsive service.</p>
+        <p>Contact us to confirm product availability, specifications, prices and fulfilment options.</p>
+      </div>
+      <div class="promise">
+        <h3>Our approach</h3>
+        <ul>
+          <li>Clear product information</li>
+          <li>Transparent quotations</li>
+          <li>Responsive customer communication</li>
+          <li>Product specifications confirmed before ordering</li>
+          <li>Suitable options based on customer requirements</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="plain contact" id="contact">
+    <div class="container">
+      <div class="contact-box">
+        <div class="eyebrow">Get in touch</div>
+        <h2>Let’s discuss what you need.</h2>
+        <p>Contact NOVELECT POWER for product enquiries, availability checks and quotations.</p>
+        <div class="contact-actions">
+          <a class="button button-outline" href="https://wa.me/919217827363" target="_blank" rel="noopener noreferrer">WhatsApp us</a>
+          <a class="button button-primary" href="mailto:novelectpower@gmail.com?subject=Product%20Enquiry%20-%20NOVELECT%20POWER">Email our business</a>
+        </div>
+        <a class="email" href="mailto:novelectpower@gmail.com">novelectpower@gmail.com</a>
+        <!-- Add your verified shop address and opening hours here. -->
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <strong>NOVELECT POWER</strong>
+    <p>Electrical products and customer enquiries.</p>
+    <p>© <span id="year"></span> NOVELECT POWER. All rights reserved.</p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/919217827363" target="_blank" rel="noopener noreferrer">WhatsApp us</a>
+
+<script>
+/* ============================================================
+   EDIT YOUR PRODUCTS HERE
+   - cat:   must match one of the categories shown as filter chips
+   - img:   path to your photo, e.g. "images/wire-1-5.jpg" (leave "" to show an icon)
+   - price: number in rupees, e.g. 120. Leave null to show "Price on request"
+   - mrp:   optional, shows struck-through MRP and % off
+   - points: up to 3 short feature lines
+   The sample items below are PLACEHOLDERS. Replace with what you stock.
+   ============================================================ */
+const PRODUCTS = [
+  {name:"Copper House Wire 1.5 sq mm", spec:"90 m coil · Multiple colours", cat:"Wires & Cables", icon:"〰️", img:"", price:null, mrp:null,
+   points:["Flame-retardant insulation","For lighting circuits","Colour options on request"]},
+  {name:"Copper House Wire 2.5 sq mm", spec:"90 m coil · Multiple colours", cat:"Wires & Cables", icon:"〰️", img:"", price:null, mrp:null,
+   points:["For power sockets and appliances","Flame-retardant insulation","Colour options on request"]},
+  {name:"Flexible Multi-core Cable", spec:"Various sizes and lengths", cat:"Wires & Cables", icon:"🔗", img:"", price:null, mrp:null,
+   points:["For appliances and extensions","Available by the metre","Ask for core and size"]},
+  {name:"LED Bulb 9 W", spec:"Cool white / warm white", cat:"LED Lighting", icon:"💡", img:"", price:null, mrp:null,
+   points:["Energy saving","B22 and E27 caps","Long burning life"]},
+  {name:"LED Batten 20 W", spec:"4 ft · Cool white", cat:"LED Lighting", icon:"💡", img:"", price:null, mrp:null,
+   points:["Bright, even light","For homes and shops","Easy to install"]},
+  {name:"LED Panel Light", spec:"Round / square · Various watts", cat:"LED Lighting", icon:"🔆", img:"", price:null, mrp:null,
+   points:["For false ceilings","Slim design","Multiple wattages"]},
+  {name:"Modular Switch 6 A", spec:"1-way · White", cat:"Switches & Sockets", icon:"🔌", img:"", price:null, mrp:null,
+   points:["Modular plate compatible","Smooth operation","Multiple brands on request"]},
+  {name:"Socket 6/16 A", spec:"Universal · White", cat:"Switches & Sockets", icon:"🔌", img:"", price:null, mrp:null,
+   points:["Fits 2 and 3 pin plugs","Safety shutter option","Ask for plate size"]},
+  {name:"Multi-plug Extension Board", spec:"4 socket · With switch", cat:"Switches & Sockets", icon:"🧩", img:"", price:null, mrp:null,
+   points:["Individual switches","Cable length options","For home and office"]},
+  {name:"MCB Single Pole", spec:"6 A to 32 A · C curve", cat:"MCBs & Protection", icon:"⚡", img:"", price:null, mrp:null,
+   points:["Overload and short-circuit protection","Choose rating by load","We help match rating"]},
+  {name:"Distribution Box (DB)", spec:"4 way / 6 way / 8 way", cat:"MCBs & Protection", icon:"🗄️", img:"", price:null, mrp:null,
+   points:["Houses MCBs neatly","Different way options","Tell us your circuits"]},
+  {name:"PVC Insulation Tape", spec:"Assorted colours", cat:"Electrical Accessories", icon:"🧰", img:"", price:null, mrp:null,
+   points:["Insulates joints","Strong adhesive","Single and bulk packs"]},
+  {name:"Connectors and Terminals", spec:"Various types", cat:"Electrical Accessories", icon:"🔧", img:"", price:null, mrp:null,
+   points:["Secure wire joins","Different sizes","Ask for your requirement"]},
+  {name:"Lamp Holders", spec:"B22 / E27 · Pendant and batten", cat:"Electrical Accessories", icon:"🪔", img:"", price:null, mrp:null,
+   points:["Heat-resistant body","Multiple types","Single and bulk packs"]}
+];
+const WA = "919217827363";
+const CATS = ["All", ...new Set(PRODUCTS.map(p => p.cat))];
+let activeCat = "All";
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function priceHtml(p){
+  if(p.price == null) return '<div class="price ask">Price on request</div>';
+  let h = '<div class="price">₹ ' + Number(p.price).toLocaleString("en-IN") + ' <small>(incl. of all taxes)</small>';
+  if(p.mrp && p.mrp > p.price){
+    const off = Math.round((1 - p.price / p.mrp) * 100);
+    h += '<br><small>MRP <s>₹ ' + Number(p.mrp).toLocaleString("en-IN") + '</s> · ' + off + '% off</small>';
+  }
+  return h + '</div>';
+}
+
+function cardHtml(p){
+  const pic = p.img ? '<img src="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy">'
+                    : '<span class="ph" aria-hidden="true">' + p.icon + '</span>';
+  const msg = "Hello NOVELECT POWER, I would like to enquire about: " + p.name + " (" + p.spec + "). Please share availability and price.";
+  return '<article class="card"><div class="pic">' + pic + '</div><div class="body">' +
+    '<h3>' + esc(p.name) + '</h3><div class="spec">' + esc(p.spec) + '</div>' + priceHtml(p) +
+    '<ul>' + p.points.map(x => '<li>' + esc(x) + '</li>').join("") + '</ul>' +
+    '<div class="enq"><a href="https://wa.me/' + WA + '?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a></div>' +
+    '</div></article>';
+}
+
+function render(){
+  const q = $("q").value.trim().toLowerCase();
+  const list = PRODUCTS.filter(p =>
+    (activeCat === "All" || p.cat === activeCat) &&
+    (!q || (p.name + " " + p.spec + " " + p.cat + " " + p.points.join(" ")).toLowerCase().includes(q)));
+  $("count").textContent = list.length + (list.length === 1 ? " product" : " products");
+  if(!list.length){
+    const m = encodeURIComponent("Hello NOVELECT POWER, do you have: " + $("q").value + "?");
+    $("grid").innerHTML = '<div class="empty" style="grid-column:1/-1">No match found. <a href="https://wa.me/' + WA + '?text=' + m + '" target="_blank" rel="noopener noreferrer">Ask us on WhatsApp</a>, we may still have it.</div>';
+    return;
+  }
+  $("grid").innerHTML = list.map(cardHtml).join("");
+}
+
+function renderChips(){
+  $("chips").innerHTML = CATS.map(c =>
+    '<button class="chip" type="button" data-c="' + esc(c) + '" aria-pressed="' + (c === activeCat) + '">' + esc(c) + '</button>').join("");
+}
+$("chips").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if(!b) return;
+  activeCat = b.dataset.c; renderChips(); render();
+});
+$("q").addEventListener("input", render);
+
+renderChips(); render();
+$("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
