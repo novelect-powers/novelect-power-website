@@ -35,14 +35,15 @@ nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .button-outline:hover{background:#0f7a3f}
 
 /* hero: full-screen shop image */
-.hero{position:relative;min-height:calc(100vh - 56px);min-height:calc(100svh - 56px);width:100%;
-  background:linear-gradient(to bottom,rgba(0,0,0,.05) 35%,rgba(0,0,0,.35) 65%,rgba(0,0,0,.8) 100%),
-  url("shopimg1.png") center center/cover no-repeat #0b0b0d;color:#fff}
-.hero-bottom-content{position:absolute;left:0;right:0;bottom:35px;text-align:center;padding:0 20px}
+.hero{background:#0b0b0d;color:#fff;position:relative}
+.hero-img{display:block;width:100%;height:auto;max-height:calc(100svh - 56px);object-fit:contain;object-position:center;background:#0b0b0d}
+.hero-bottom-content{text-align:center;padding:22px 20px 30px}
+@media(min-width:900px){
+  .hero-bottom-content{position:absolute;left:0;right:0;bottom:0;padding:70px 20px 26px;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,0))}
+}
 .welcome-line{margin-bottom:20px;font-size:clamp(18px,2.5vw,30px);font-weight:700;letter-spacing:3px;text-shadow:0 2px 12px rgba(0,0,0,.8)}
 .hero-buttons{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
 @media(max-width:600px){
-  .hero{background-position:center}
   .welcome-line{letter-spacing:1.5px;font-size:18px}
   .hero-buttons .button{width:100%;max-width:290px}
 }
@@ -121,6 +122,7 @@ footer strong{color:#fff}
 
 <main>
   <section class="hero" id="home" aria-label="NOVELECT POWER shop">
+    <img class="hero-img" src="shopimg1.png" alt="NOVELECT POWER electrical shop interior" width="1746" height="901">
     <div class="hero-bottom-content">
       <p class="welcome-line">WELCOME TO NOVELECT POWER</p>
       <div class="hero-buttons">
