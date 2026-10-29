@@ -59,6 +59,9 @@ nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .chip{flex:none;padding:9px 18px;border-radius:50px;border:1px solid var(--border);background:#fff;font:600 .92rem Arial,sans-serif;cursor:pointer;color:var(--text)}
 .chip:hover{border-color:var(--black)}
 .chip[aria-pressed="true"]{background:var(--black);color:var(--gold);border-color:var(--black)}
+.filters{display:flex;gap:10px;flex-wrap:wrap}
+.filters[hidden]{display:none}
+.filters select{height:44px;padding:0 14px;border:1px solid var(--border);border-radius:50px;background:#fff;font:600 .92rem Arial,sans-serif;color:var(--text)}
 .count{color:var(--muted);font-size:.9rem;margin-bottom:14px}
 
 .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
@@ -140,6 +143,10 @@ footer strong{color:#fff}
       <div class="toolbar">
         <div class="search"><input id="q" type="search" placeholder="Search products, e.g. wire, LED, MCB" aria-label="Search products"></div>
         <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+        <div class="filters" id="wf" hidden>
+          <select id="brand" aria-label="Filter by brand"></select>
+          <select id="size" aria-label="Filter by wire size"></select>
+        </div>
       </div>
       <p class="count" id="count" aria-live="polite"></p>
       <div class="grid" id="grid"></div>
@@ -206,12 +213,6 @@ footer strong{color:#fff}
    The sample items below are PLACEHOLDERS. Replace with what you stock.
    ============================================================ */
 const PRODUCTS = [
-  {name:"Copper House Wire 1.5 sq mm", spec:"90 m coil · Multiple colours", cat:"Wires & Cables", icon:"〰️", img:"", price:null, mrp:null,
-   points:["Flame-retardant insulation","For lighting circuits","Colour options on request"]},
-  {name:"Copper House Wire 2.5 sq mm", spec:"90 m coil · Multiple colours", cat:"Wires & Cables", icon:"〰️", img:"", price:null, mrp:null,
-   points:["For power sockets and appliances","Flame-retardant insulation","Colour options on request"]},
-  {name:"Flexible Multi-core Cable", spec:"Various sizes and lengths", cat:"Wires & Cables", icon:"🔗", img:"", price:null, mrp:null,
-   points:["For appliances and extensions","Available by the metre","Ask for core and size"]},
   {name:"LED Bulb 9 W", spec:"Cool white / warm white", cat:"LED Lighting", icon:"💡", img:"", price:null, mrp:null,
    points:["Energy saving","B22 and E27 caps","Long burning life"]},
   {name:"LED Batten 20 W", spec:"4 ft · Cool white", cat:"LED Lighting", icon:"💡", img:"", price:null, mrp:null,
@@ -235,6 +236,38 @@ const PRODUCTS = [
   {name:"Lamp Holders", spec:"B22 / E27 · Pendant and batten", cat:"Electrical Accessories", icon:"🪔", img:"", price:null, mrp:null,
    points:["Heat-resistant body","Multiple types","Single and bulk packs"]}
 ];
+
+/* ============================================================
+   COPPER HOUSE WIRES: every brand x every size is generated below.
+   - Add or remove a brand by editing WIRE_BRANDS.
+   - Add prices in WIRE_PRICES using "Brand|size": rupees per coil.
+     Example: "Polycab|1.5": 1850   (leave out to show "Price on request")
+   - Brand photos: put images/wires/polycab.jpg, havells.jpg, finolex.jpg,
+     rr-kabel.jpg, bonton.jpg (use photos you own or that the brand/dealer
+     has given you permission to use). A missing photo shows an icon.
+   ============================================================ */
+const WIRE_BRANDS = ["Polycab","Havells","Finolex","RR Kabel","Bonton"];
+const WIRE_SIZES  = [0.75, 1, 1.5, 2.5, 4, 6, 10, 16];
+const WIRE_USE = {0.75:"Control wiring, small appliances",1:"Light loads, fans, control wiring",1.5:"Lights and fans",
+  2.5:"Power sockets, TV, fridge, appliances",4:"AC, geyser, heavy appliances",6:"Large AC, sub-circuits, heavy loads",
+  10:"Sub-mains and heavy loads",16:"Main supply and sub-mains"};
+const WIRE_PRICES = {
+  /* "Polycab|1.5": 0, */
+};
+WIRE_BRANDS.forEach(brand => {
+  const slug = brand.toLowerCase().replace(/\s+/g,"-");
+  WIRE_SIZES.forEach(size => {
+    const coil = size <= 6 ? "90 m coil" : "Coil length on enquiry";
+    PRODUCTS.push({
+      name: brand + " FR Copper House Wire " + size + " sq mm",
+      spec: coil + " · Colours on request",
+      cat: "Wires & Cables", brand: brand, size: size, icon: "〰️",
+      img: "images/wires/" + slug + ".jpg",
+      price: WIRE_PRICES[brand + "|" + size] ?? null, mrp: null,
+      points: ["Copper conductor, PVC insulated", "Typical use: " + WIRE_USE[size], "Genuine " + brand + " stock, confirm on enquiry"]
+    });
+  });
+});
 const WA = "919217827363";
 const CATS = ["All", ...new Set(PRODUCTS.map(p => p.cat))];
 let activeCat = "All";
@@ -267,6 +300,7 @@ function render(){
   const q = $("q").value.trim().toLowerCase();
   const list = PRODUCTS.filter(p =>
     (activeCat === "All" || p.cat === activeCat) &&
+    (activeCat !== "Wires & Cables" || ((!$("brand").value || p.brand === $("brand").value) && (!$("size").value || String(p.size) === $("size").value))) &&
     (!q || (p.name + " " + p.spec + " " + p.cat + " " + p.points.join(" ")).toLowerCase().includes(q)));
   $("count").textContent = list.length + (list.length === 1 ? " product" : " products");
   if(!list.length){
@@ -283,9 +317,20 @@ function renderChips(){
 }
 $("chips").addEventListener("click", e => {
   const b = e.target.closest(".chip"); if(!b) return;
-  activeCat = b.dataset.c; renderChips(); render();
+  activeCat = b.dataset.c; $("brand").value = ""; $("size").value = "";
+  $("wf").hidden = activeCat !== "Wires & Cables"; renderChips(); render();
 });
 $("q").addEventListener("input", render);
+$("brand").innerHTML = '<option value="">All brands</option>' + WIRE_BRANDS.map(b => '<option>' + b + '</option>').join("");
+$("size").innerHTML = '<option value="">All sizes</option>' + WIRE_SIZES.map(z => '<option value="' + z + '">' + z + ' sq mm</option>').join("");
+$("brand").addEventListener("change", render);
+$("size").addEventListener("change", render);
+/* if a product photo is missing, show the icon instead */
+$("grid").addEventListener("error", e => {
+  if(e.target.tagName !== "IMG") return;
+  const sp = document.createElement("span"); sp.className = "ph"; sp.textContent = "〰️";
+  e.target.replaceWith(sp);
+}, true);
 
 renderChips(); render();
 $("year").textContent = new Date().getFullYear();
