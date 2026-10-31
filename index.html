@@ -73,6 +73,10 @@ nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .card .pic{aspect-ratio:4/3;background:#fff;display:grid;place-items:center;padding:14px;border-bottom:1px solid var(--border)}
 .card .pic{position:relative}
 .card .pic img{position:absolute;inset:14px;width:calc(100% - 28px);height:calc(100% - 28px);object-fit:contain}
+.thumbs{display:flex;gap:8px;padding:8px 14px;border-bottom:1px solid var(--border);background:#fff;flex-wrap:wrap}
+.thumb{width:48px;height:48px;padding:3px;border:2px solid var(--border);border-radius:8px;background:#fff;cursor:pointer}
+.thumb.on{border-color:var(--red)}
+.thumb img{width:100%;height:100%;object-fit:contain;display:block}
 .card .pic .ph{font-size:3.4rem}
 .card .body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
 .card h3{font-size:1.02rem;color:var(--black);line-height:1.3}
@@ -207,7 +211,9 @@ footer strong{color:#fff}
 /* ============================================================
    EDIT YOUR PRODUCTS HERE
    - cat:   must match one of the categories shown as filter chips
-   - img:   path to your photo, e.g. "images/wire-1-5.jpg" (leave "" to show an icon)
+   - img:   path to ONE photo, e.g. "images/wire-1-5.jpg" (leave "" to show an icon)
+   - imgs:  for 2 or more photos use a list instead of img, e.g.
+            imgs: ["images/a-01.jpg", "images/a-02.jpg", "images/a-03.jpg"],
    - price: number in rupees, e.g. 120. Leave null to show "Price on request"
    - mrp:   optional, shows struck-through MRP and % off
    - points: up to 3 short feature lines
@@ -226,36 +232,6 @@ const PRODUCTS = [
       "Flame-retardant polycarbonate body",
       "Silver-tipped bimetal contacts",
       "Compact 1-module design for home wiring"
-    ]
-  },
-  
-    {
-    name: "GreatWhite Trivo Modular Plate",
-    spec: "Switch plate | Code 505020-MN | With mounting screws",
-    cat: "Switches & Sockets",
-    icon: "🔌",
-    img: "images/greatwhite-trivo-plate-01.png",
-    price: 130,
-    mrp: 197,
-    points: [
-      "Strong honeycomb-reinforced back",
-      "Mounting screws included in the pack",
-      "Made in India, ISO certified manufacturer"
-    ]
-  },
-
-    {
-    name: "Urbotec 7W Concealed LED Downlight",
-    spec: "Round recessed | 7 Watt | White light | 220-240V",
-    cat: "LED Lighting",
-    icon: "🔆",
-    img: "images/urbotec-7w-downlight-01.jpeg",
-    price: 150,
-    mrp: 225,
-    points: [
-      "BIS approved (IS 10322), power factor above 0.95",
-      "Concealed fitting for false ceilings",
-      "Bright white light, 7W low power use"
     ]
   },
   {name:"LED Bulb 9 W", spec:"Cool white / warm white", cat:"LED Lighting", icon:"💡", img:"", price:null, mrp:null,
@@ -331,10 +307,16 @@ function priceHtml(p){
 }
 
 function cardHtml(p){
-  const pic = p.img ? '<img src="' + esc(p.img) + '" alt="' + esc(p.name) + '" data-icon="' + esc(p.icon) + '">'
-                    : '<span class="ph" aria-hidden="true">' + p.icon + '</span>';
+  const list = (p.imgs && p.imgs.length) ? p.imgs : (p.img ? [p.img] : []);
+  const pic = list.length
+    ? '<img src="' + esc(list[0]) + '" alt="' + esc(p.name) + '" data-icon="' + esc(p.icon) + '">'
+    : '<span class="ph" aria-hidden="true">' + p.icon + '</span>';
+  const thumbs = list.length > 1
+    ? '<div class="thumbs">' + list.map((src, i) =>
+        '<button type="button" class="thumb' + (i === 0 ? ' on' : '') + '" data-src="' + esc(src) + '" aria-label="Photo ' + (i + 1) + '"><img src="' + esc(src) + '" alt=""></button>').join("") + '</div>'
+    : '';
   const msg = "Hello NOVELECT POWER, I would like to enquire about: " + p.name + " (" + p.spec + "). Please share availability and price.";
-  return '<article class="card"><div class="pic">' + pic + '</div><div class="body">' +
+  return '<article class="card"><div class="pic">' + pic + '</div>' + thumbs + '<div class="body">' +
     '<h3>' + esc(p.name) + '</h3><div class="spec">' + esc(p.spec) + '</div>' + priceHtml(p) +
     '<ul>' + p.points.map(x => '<li>' + esc(x) + '</li>').join("") + '</ul>' +
     '<div class="enq"><a href="https://wa.me/' + WA + '?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a></div>' +
@@ -373,9 +355,21 @@ $("size").addEventListener("change", render);
 /* if a product photo is missing, show the icon instead */
 $("grid").addEventListener("error", e => {
   if(e.target.tagName !== "IMG") return;
+  const t = e.target.closest(".thumb");
+  if(t){ t.remove(); return; }
   const sp = document.createElement("span"); sp.className = "ph"; sp.textContent = e.target.dataset.icon || "⚡";
   e.target.replaceWith(sp);
 }, true);
+/* tap a small photo to show it big */
+$("grid").addEventListener("click", e => {
+  const b = e.target.closest(".thumb"); if(!b) return;
+  const card = b.closest(".card");
+  const pic = card.querySelector(".pic");
+  const main = pic.querySelector("img");
+  if(main){ main.src = b.dataset.src; }
+  else { pic.innerHTML = '<img src="' + b.dataset.src + '" alt="">'; }
+  card.querySelectorAll(".thumb").forEach(x => x.classList.toggle("on", x === b));
+});
 
 renderChips(); render();
 $("year").textContent = new Date().getFullYear();
