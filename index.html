@@ -602,18 +602,7 @@ const WIRE_USE = {0.75:"Control wiring, small appliances",1:"Light loads, fans, 
 const WIRE_PRICES = {
   /* "Polycab|1.5": 0, */
 };
-  const WIRE_FILE = {
-  "Polycab": {
-    0.75: "Polycab-0.75.png",
-    1:    "Polycab-1.0.png",
-    1.5:  "polycab-1.5.png",
-    2.5:  "polycab-2.5.png",
-    4:    "polycab-4.0.png",
-    6:    "Polycab-6.0.png",
-    10:   "Polycab-10.png",
-    16:   "Polycab-16.png"
-  }
-};
+
 WIRE_BRANDS.forEach(brand => {
   const slug = brand.toLowerCase().replace(/\s+/g,"-");
   WIRE_SIZES.forEach(size => {
@@ -622,7 +611,7 @@ WIRE_BRANDS.forEach(brand => {
       name: brand + " FR Copper House Wire " + size + " sq mm",
       spec: coil + " · Colours on request",
       cat: "Wires & Cables", brand: brand, size: size, icon: "〰️",
-      img: (WIRE_FILE[brand] && WIRE_FILE[brand][size]) ? "images/wires/" + WIRE_FILE[brand][size] : "",
+      img: "images/wires/" + slug + ".png",
       price: WIRE_PRICES[brand + "|" + size] ?? null, mrp: null,
       points: ["Copper conductor, PVC insulated", "Typical use: " + WIRE_USE[size], "Genuine " + brand + " stock, confirm on enquiry"]
     });
